@@ -37,4 +37,24 @@ public class Squad {
   public List<Hero> getHeroes() {
     return heroes;
   }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setMaxSize(int maxSize) {
+    this.maxSize = maxSize;
+  }
+
+  public void setCause(String cause) {
+    this.cause = cause;
+  }
+
+  public void setHeroes(List<Hero> heroes) {
+    this.heroes = heroes;
+  }
 }
