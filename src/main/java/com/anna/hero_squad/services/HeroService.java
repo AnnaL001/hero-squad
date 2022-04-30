@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeroService implements HeroSquadService<Hero>{
-  private final List<Hero> heroes = new ArrayList<>();
+  private List<Hero> heroes = new ArrayList<>();
+
   @Override
-  public void add(Hero data) {
+  public void add(Hero data, List<Hero> collection) {
+    heroes = collection;
+    data.setId(heroes.size() + 1);
     heroes.add(data);
   }
 
@@ -18,8 +21,8 @@ public class HeroService implements HeroSquadService<Hero>{
   }
 
   @Override
-  public Hero get(int id) {
-    return null;
+  public Hero get(int id, List<Hero> collection) {
+    return collection.get(id - 1);
   }
 
   @Override
