@@ -15,5 +15,27 @@ class HeroTest {
     assertNotNull(hero);
   }
 
+  @Test
+  @DisplayName("Test that a hero instance instantiates with the name property's value")
+  public void newHero_instantiatesWithName_true(Hero hero) {
+    assertEquals("Polaris", hero.getName());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance instantiates with the age property's value")
+  public void newHero_instantiatesWithAge_true(Hero hero) {
+    assertEquals(18, hero.getAge());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance instantiates with the specialPower's property's value")
+  public void newHero_instantiatesWithSpecialPowers_true(Hero hero) {
+    assertEquals("Magnetokinesis", hero.getSpecialPower());
+  }
+
+  @Test
+  public void newHero_instantiatesWithWeakness_true(Hero hero) {
+    assertEquals("Can't use powers without metal in close range", hero.getWeakness());
+  }
 
 }
