@@ -1,4 +1,4 @@
-package com.anna.hero_squad.models.parameter_resolver;
+package com.anna.hero_squad.parameter_resolver;
 
 import com.anna.hero_squad.models.Hero;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -14,6 +14,6 @@ public class HeroParameterResolver implements ParameterResolver {
 
   @Override
   public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-    return new Hero("Polaris", 18 , "Magnetokinesis", "Can't use powers without metal in close range");
+    return new Hero("Polaris", 18 , "Magnetokinesis", "Can't use powers without metal in close range", 'F');
   }
 }
