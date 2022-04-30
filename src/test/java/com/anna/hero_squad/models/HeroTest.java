@@ -16,6 +16,7 @@ class HeroTest {
   }
 
   @Test
+  @DisplayName("Test that hero instance is instantiated with default id")
   public void newHero_instantiatesWithDefaultId_true(Hero hero) {
     assertEquals(0, hero.getId());
   }
@@ -51,6 +52,7 @@ class HeroTest {
   }
 
   @Test
+  @DisplayName("Test that hero instance is instantiated with default squadId")
   public void newHero_instantiatesWithDefaultSquadId_true(Hero hero) {
     assertEquals(0, hero.getSquadId());
   }
