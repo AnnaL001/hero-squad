@@ -28,12 +28,13 @@ class HeroTest {
   }
 
   @Test
-  @DisplayName("Test that a hero instance instantiates with the specialPower's property's value")
+  @DisplayName("Test that a hero instance instantiates with the specialPower property's value")
   public void newHero_instantiatesWithSpecialPowers_true(Hero hero) {
     assertEquals("Magnetokinesis", hero.getSpecialPower());
   }
 
   @Test
+  @DisplayName("Test that a hero instance instantiates with the weakness property's value")
   public void newHero_instantiatesWithWeakness_true(Hero hero) {
     assertEquals("Can't use powers without metal in close range", hero.getWeakness());
   }
