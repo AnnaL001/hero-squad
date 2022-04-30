@@ -39,4 +39,31 @@ class HeroTest {
     assertEquals("Can't use powers without metal in close range", hero.getWeakness());
   }
 
+  @Test
+  @DisplayName("Test that a hero instance's name is updated as specified")
+  public void setName_updatesNameCorrectly_true(Hero hero) {
+    hero.setName("Lorna Dane");
+    assertEquals("Lorna Dane", hero.getName());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's age is updated as specified")
+  public void setAge_updatesAgeCorrectly_true(Hero hero) {
+    hero.setAge(20);
+    assertEquals(20, hero.getAge());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's special power is updated as specified")
+  public void setSpecialPower_updatesSpecialPowerCorrectly_true(Hero hero) {
+    hero.setSpecialPower("Ferromagnetism");
+    assertEquals("Ferromagnetism", hero.getSpecialPower());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's weakness is updated as specified")
+  public void setWeakness_updatesWeaknessCorrectly_true(Hero hero) {
+    hero.setWeakness("Can't use powers secretly due to greenish-black glow around her hands");
+    assertEquals("Can't use powers secretly due to greenish-black glow around her hands", hero.getWeakness());
+  }
 }
