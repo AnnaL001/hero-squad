@@ -28,4 +28,20 @@ public class Hero {
   public String getWeakness() {
     return weakness;
   }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public void setSpecialPower(String specialPower) {
+    this.specialPower = specialPower;
+  }
+
+  public void setWeakness(String weakness) {
+    this.weakness = weakness;
+  }
 }
