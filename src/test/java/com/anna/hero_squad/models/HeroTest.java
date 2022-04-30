@@ -16,6 +16,11 @@ class HeroTest {
   }
 
   @Test
+  public void newHero_instantiatesWithDefaultId_true(Hero hero) {
+    assertEquals(0, hero.getId());
+  }
+
+  @Test
   @DisplayName("Test that a hero instance instantiates with the name property's value")
   public void newHero_instantiatesWithName_true(Hero hero) {
     assertEquals("Polaris", hero.getName());
@@ -43,6 +48,11 @@ class HeroTest {
   @DisplayName("Test that a hero instance instantiates with the gender property's value")
   public void newHero_instantiatesWithGender_true(Hero hero) {
     assertEquals('F', hero.getGender());
+  }
+
+  @Test
+  public void newHero_instantiatesWithDefaultSquadId_true(Hero hero) {
+    assertEquals(0, hero.getSquadId());
   }
 
   @Test
@@ -78,5 +88,19 @@ class HeroTest {
   public void setGender_updatesGenderCorrectly_true(Hero hero) {
     hero.setGender('U');
     assertEquals('U', hero.getGender());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's id property is updated as specified")
+  public void setId_updatesIdCorrectly_true(Hero hero) {
+    hero.setId(1);
+    assertEquals(1, hero.getId());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's squadId property is updated as specified")
+  public void setSquadId_updatesSquadIdCorrectly_true(Hero hero) {
+    hero.setSquadId(1);
+    assertEquals(1, hero.getSquadId());
   }
 }
