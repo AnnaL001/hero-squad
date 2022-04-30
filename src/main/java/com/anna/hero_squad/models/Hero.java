@@ -20,6 +20,8 @@ public class Hero {
     this.squadId = 0;
   }
 
+
+
   public int getId() {
     return id;
   }
