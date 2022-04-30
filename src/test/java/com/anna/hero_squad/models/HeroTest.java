@@ -1,6 +1,6 @@
 package com.anna.hero_squad.models;
 
-import com.anna.hero_squad.models.parameter_resolver.HeroParameterResolver;
+import com.anna.hero_squad.parameter_resolver.HeroParameterResolver;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,6 +40,12 @@ class HeroTest {
   }
 
   @Test
+  @DisplayName("Test that a hero instance instantiates with the gender property's value")
+  public void newHero_instantiatesWithGender_true(Hero hero) {
+    assertEquals('F', hero.getGender());
+  }
+
+  @Test
   @DisplayName("Test that a hero instance's name is updated as specified")
   public void setName_updatesNameCorrectly_true(Hero hero) {
     hero.setName("Lorna Dane");
@@ -65,5 +71,12 @@ class HeroTest {
   public void setWeakness_updatesWeaknessCorrectly_true(Hero hero) {
     hero.setWeakness("Can't use powers secretly due to greenish-black glow around her hands");
     assertEquals("Can't use powers secretly due to greenish-black glow around her hands", hero.getWeakness());
+  }
+
+  @Test
+  @DisplayName("Test that a hero instance's gender is updated as specified")
+  public void setGender_updatesGenderCorrectly_true(Hero hero) {
+    hero.setGender('U');
+    assertEquals('U', hero.getGender());
   }
 }
