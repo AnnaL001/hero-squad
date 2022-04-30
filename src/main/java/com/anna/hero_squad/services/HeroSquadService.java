@@ -12,9 +12,9 @@ public interface HeroSquadService<T> {
   T get(int id, List<T> collection);
 
   // UPDATE
-  void update(T data);
+  void update(T data, List<T> collection);
 
   // DELETE
-  void delete(int id);
-  void deleteAll();
+  void delete(int id, List<T> collection);
+  void deleteAll(List<T> collection);
 }
