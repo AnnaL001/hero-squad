@@ -3,6 +3,7 @@ package com.anna.hero_squad.services;
 import com.anna.hero_squad.models.Hero;
 import com.anna.hero_squad.parameter_resolver.HeroParameterResolver;
 import com.anna.hero_squad.parameter_resolver.HeroServiceParameterResolver;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -12,8 +13,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class HeroServiceTest {
 
   @Test
-  void add_addsHeroInstance_true(Hero hero, HeroService heroService) {
-    heroService.add(hero);
+  @DisplayName("Test to check hero is added to heroes list")
+  public void add_addsHeroInstance_true(Hero hero, HeroService heroService) {
+    heroService.add(hero, heroService.getAll());
     assertTrue(heroService.getAll().contains(hero));
+  }
+
+  @Test
+  @DisplayName("Test to check all added heroes can be retrieved")
+  public void getAll_retrievesHeroesList_true(Hero hero, HeroService heroService) {
+    Hero anotherHero = new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
+    heroService.add(hero, heroService.getAll());
+    heroService.add(anotherHero, heroService.getAll());
+    assertEquals(2, heroService.getAll().size());
+  }
+
+  @Test
+  @DisplayName("Test to check empty list is returned if no hero is added")
+  public void getAll_retrievesEmptyListIfNoHeroes_true(HeroService heroService) {
+    assertEquals(0, heroService.getAll().size());
+  }
+
+  @Test
+  public void get_retrievesHeroInHeroesList_true(Hero hero, HeroService heroService) {
+    heroService.add(hero, heroService.getAll());
+    assertEquals(hero, heroService.get(1, heroService.getAll()));
   }
 }
