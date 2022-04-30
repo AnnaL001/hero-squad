@@ -26,17 +26,24 @@ public class HeroService implements HeroSquadService<Hero>{
   }
 
   @Override
-  public void update(Hero data) {
-
+  public void update(Hero data, List<Hero> collection) {
+    Hero hero = get(data.getId(), collection);
+    hero.setName(data.getName());
+    hero.setAge(data.getAge());
+    hero.setSpecialPower(data.getSpecialPower());
+    hero.setWeakness(data.getWeakness());
+    hero.setGender(data.getGender());
   }
 
   @Override
-  public void delete(int id) {
-
+  public void delete(int id, List<Hero> collection) {
+    collection.remove(id - 1);
+    heroes = collection;
   }
 
   @Override
-  public void deleteAll() {
-
+  public void deleteAll(List<Hero> collection) {
+    collection.clear();
+    heroes = collection;
   }
 }
