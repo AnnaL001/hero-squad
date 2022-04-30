@@ -6,11 +6,14 @@ public class Hero {
   private String specialPower;
   private String weakness;
 
-  public Hero(String name, int age, String specialPower, String weakness) {
+  private char gender;
+
+  public Hero(String name, int age, String specialPower, String weakness, char gender) {
     this.name = name;
     this.age = age;
     this.specialPower = specialPower;
     this.weakness = weakness;
+    this.gender = gender;
   }
 
   public String getName() {
@@ -43,5 +46,13 @@ public class Hero {
 
   public void setWeakness(String weakness) {
     this.weakness = weakness;
+  }
+
+  public char getGender() {
+    return gender;
+  }
+
+  public void setGender(char gender) {
+    this.gender = gender;
   }
 }
