@@ -3,7 +3,7 @@ package com.anna.hero_squad.services;
 
 import java.util.List;
 
-public interface HeroSquadService<T> {
+public interface HeroSquadService<T, O> {
   // CREATE
   void add(T data, List<T> collection);
 
@@ -15,6 +15,5 @@ public interface HeroSquadService<T> {
   void update(T data, List<T> collection);
 
   // DELETE
-  void delete(int id, List<T> collection);
-  void deleteAll(List<T> collection);
+  void delete(int id, List<T> collection, List<O> anotherCollection);
 }
