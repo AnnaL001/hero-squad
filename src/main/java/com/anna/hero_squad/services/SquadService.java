@@ -6,7 +6,7 @@ import com.anna.hero_squad.models.Squad;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SquadService implements HeroSquadService<Squad> {
+public class SquadService implements HeroSquadService<Squad, Hero> {
   private List<Squad> squads = new ArrayList<>();
   private final HeroService heroService = new HeroService();
   @Override
@@ -23,12 +23,19 @@ public class SquadService implements HeroSquadService<Squad> {
 
   @Override
   public Squad get(int id, List<Squad> collection) {
-    return collection.get(id - 1);
+    squads = collection;
+    try {
+      return squads.get(id - 1);
+    } catch(Exception exception){
+      System.out.println("Squad not found\n" + exception.getMessage());
+      return null;
+    }
   }
 
   @Override
   public void update(Squad data, List<Squad> collection) {
-    Squad squad = get(data.getId(), collection);
+    squads = collection;
+    Squad squad = get(data.getId(), squads);
     squad.setName(data.getName());
     squad.setCause(data.getCause());
     squad.setMaxSize(data.getMaxSize());
@@ -56,22 +63,21 @@ public class SquadService implements HeroSquadService<Squad> {
     heroService.update(foundHero, heroes);
   }
 
-
   @Override
-  public void delete(int id, List<Squad> collection) {
+  public void delete(int id, List<Squad> collection, List<Hero> heroes) {
+    Squad squad = get(id, collection);
+    List<Hero> heroList = squad.getHeroes();
+    // Set squadId of heroes in squad heroes list to 0
+    for(Hero hero: heroList){
+      hero.setSquadId(0);
+      heroService.update(hero, heroes);
+    }
+
     if(!collection.isEmpty()){
       collection.remove(id - 1);
     }
 
     // Retrieve updated list
-    squads = collection;
-  }
-
-  @Override
-  public void deleteAll(List<Squad> collection) {
-    if(!collection.isEmpty()){
-      collection.clear();
-    }
     squads = collection;
   }
 }
