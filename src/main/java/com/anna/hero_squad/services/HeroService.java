@@ -1,11 +1,12 @@
 package com.anna.hero_squad.services;
 
 import com.anna.hero_squad.models.Hero;
+import com.anna.hero_squad.models.Squad;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeroService implements HeroSquadService<Hero>{
+public class HeroService implements HeroSquadService<Hero, Squad>{
   private List<Hero> heroes = new ArrayList<>();
 
   @Override
@@ -22,12 +23,19 @@ public class HeroService implements HeroSquadService<Hero>{
 
   @Override
   public Hero get(int id, List<Hero> collection) {
-    return collection.get(id - 1);
+    heroes = collection;
+    try {
+      return heroes.get(id - 1);
+    } catch (Exception exception){
+      System.out.println("Hero not found\n" + exception.getMessage());
+      return null;
+    }
   }
 
   @Override
   public void update(Hero data, List<Hero> collection) {
-    Hero hero = get(data.getId(), collection);
+    heroes = collection;
+    Hero hero = get(data.getId(),  heroes);
     hero.setName(data.getName());
     hero.setAge(data.getAge());
     hero.setSpecialPower(data.getSpecialPower());
@@ -36,17 +44,9 @@ public class HeroService implements HeroSquadService<Hero>{
   }
 
   @Override
-  public void delete(int id, List<Hero> collection) {
+  public void delete(int id, List<Hero> collection, List<Squad> squads) {
     if(!collection.isEmpty()){
       collection.remove(id - 1);
-    }
-    heroes = collection;
-  }
-
-  @Override
-  public void deleteAll(List<Hero> collection) {
-    if(!collection.isEmpty()){
-      collection.clear();
     }
     heroes = collection;
   }
