@@ -3,13 +3,18 @@ package com.anna.hero_squad.services;
 import com.anna.hero_squad.models.Hero;
 import com.anna.hero_squad.parameter_resolver.HeroParameterResolver;
 import com.anna.hero_squad.parameter_resolver.HeroServiceParameterResolver;
+import com.anna.hero_squad.parameter_resolver.SquadParameterResolver;
+import com.anna.hero_squad.parameter_resolver.SquadServiceParameterResolver;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(HeroParameterResolver.class)
+@ExtendWith(SquadParameterResolver.class)
 @ExtendWith(HeroServiceParameterResolver.class)
+@ExtendWith(SquadServiceParameterResolver.class)
 class HeroServiceTest {
 
   @Test
@@ -42,6 +47,13 @@ class HeroServiceTest {
   }
 
   @Test
+  @DisplayName("Test to check that null value is returned when a hero is not found")
+  public void get_returnsNullIfHeroNotFound_true(Hero hero, HeroService heroService) {
+    Hero foundHero = heroService.get(hero.getId(), heroService.getAll());
+    assertNull(foundHero);
+  }
+
+  @Test
   @DisplayName("Test to check that hero data is updated as specified")
   public void update_updatesHeroInfo_true(Hero hero, HeroService heroService) {
     heroService.add(hero, heroService.getAll());
@@ -61,20 +73,18 @@ class HeroServiceTest {
 
   @Test
   @DisplayName("Test to check that hero data can be deleted successfully")
-  public void delete_deletesAHero_false(Hero hero, HeroService heroService) {
+  public void delete_deletesAHeroNotInSquad_false(Hero hero, HeroService heroService, SquadService squadService) {
     heroService.add(hero, heroService.getAll());
-    heroService.delete(hero.getId(), heroService.getAll());
+    heroService.delete(hero.getId(), heroService.getAll(), squadService.getAll());
     assertFalse(heroService.getAll().contains(hero));
   }
 
   @Test
-  @DisplayName("Test to check that all heroes can be deleted successfully")
-  public void delete_deletesAllHeroes_true(Hero hero, HeroService heroService) {
-    Hero anotherHero = setUpHero();
+  @DisplayName("Test to check that hero data can be deleted successfully")
+  public void delete_updatesSquadHeroesList_false(Hero hero, HeroService heroService, SquadService squadService) {
     heroService.add(hero, heroService.getAll());
-    heroService.add(anotherHero, heroService.getAll());
-    heroService.deleteAll(heroService.getAll());
-    assertEquals(0, heroService.getAll().size());
+    heroService.delete(hero.getId(), heroService.getAll(), squadService.getAll());
+    assertFalse(heroService.getAll().contains(hero));
   }
 
   private Hero setUpHero(){
