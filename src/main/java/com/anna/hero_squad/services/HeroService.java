@@ -37,13 +37,17 @@ public class HeroService implements HeroSquadService<Hero>{
 
   @Override
   public void delete(int id, List<Hero> collection) {
-    collection.remove(id - 1);
+    if(!collection.isEmpty()){
+      collection.remove(id - 1);
+    }
     heroes = collection;
   }
 
   @Override
   public void deleteAll(List<Hero> collection) {
-    collection.clear();
+    if(!collection.isEmpty()){
+      collection.clear();
+    }
     heroes = collection;
   }
 }
