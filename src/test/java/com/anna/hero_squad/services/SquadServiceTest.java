@@ -43,8 +43,15 @@ class SquadServiceTest {
   @DisplayName("Test to check squad can be retrieved from squads list")
   public void get_retrievesHeroInHeroesList_true(Squad squad, SquadService squadService) {
     squadService.add(squad, squadService.getAll());
-    Squad foundSquad = squadService.get(1, squadService.getAll());
+    Squad foundSquad = squadService.get(squad.getId(), squadService.getAll());
     assertEquals(squad, foundSquad);
+  }
+
+  @Test
+  @DisplayName("Test to check that null value is returned when a squad is not found")
+  public void get_returnsNullIfSquadNotFound_true(Squad squad, SquadService squadService) {
+    Squad foundSquad = squadService.get(squad.getId(), squadService.getAll());
+    assertNull(foundSquad);
   }
 
   @Test
@@ -63,10 +70,21 @@ class SquadServiceTest {
 
   @Test
   @DisplayName("Test to check that squad data can be deleted successfully")
-  public void delete_deletesASquad_false(Squad squad, SquadService squadService) {
+  public void delete_deletesASquad_false(Squad squad, SquadService squadService, HeroService heroService) {
     squadService.add(squad, squadService.getAll());
-    squadService.delete(squad.getId(), squadService.getAll());
+    squadService.delete(squad.getId(), squadService.getAll(), heroService.getAll());
     assertFalse(squadService.getAll().contains(squad));
+  }
+
+  @Test
+  @DisplayName("Test to check that squad heroes' squadId is updated correctly on squad deletion")
+  public void delete_updatesSquadHeroesSquadId_false(Hero hero, Squad squad, SquadService squadService, HeroService heroService) {
+    heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    squadService.delete(squad.getId(), squadService.getAll(), heroService.getAll());
+    Hero foundHero = heroService.get(hero.getId(), heroService.getAll());
+    assertEquals(0, foundHero.getSquadId());
   }
 
   @Test
@@ -77,6 +95,16 @@ class SquadServiceTest {
     squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
     Squad foundSquad = squadService.get(squad.getId(), squadService.getAll());
     assertTrue(foundSquad.getHeroes().contains(hero));
+  }
+
+  @Test
+  @DisplayName("Test to check that hero's squadId is updated correctly after being added to a squad")
+  public void addHeroToSquad_updatesHeroSquadId_true(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
+    heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    Hero foundHero = heroService.get(hero.getId(), heroService.getAll());
+    assertEquals(1, foundHero.getSquadId());
   }
 
   @Test
@@ -91,16 +119,21 @@ class SquadServiceTest {
   }
 
   @Test
-  @DisplayName("Test to check that all squads can be deleted successfully")
-  public void delete_deletesAllSquads_true(Squad squad, SquadService squadService) {
-    Squad anotherSquad = setUpASquad();
+  @DisplayName("Test to check that hero's squadId is updated correctly when hero is removed from squad")
+  public void deleteHeroFromSquad_updatesHeroSquadId_true(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
+    heroService.add(hero, heroService.getAll());
     squadService.add(squad, squadService.getAll());
-    squadService.add(anotherSquad, squadService.getAll());
-    squadService.deleteAll(squadService.getAll());
-    assertEquals(0, squadService.getAll().size());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    squadService.deleteHeroFromSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    Hero foundHero = heroService.get(hero.getId(), heroService.getAll());
+    assertEquals(0, foundHero.getSquadId());
   }
 
   private Squad setUpASquad(){
     return new Squad(5, "Inner circle", "Fight for mutants' rights");
+  }
+
+  private Hero setUpHero(){
+    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
   }
 }
