@@ -1,6 +1,9 @@
 package com.anna.hero_squad.services;
 
+import com.anna.hero_squad.models.Hero;
 import com.anna.hero_squad.models.Squad;
+import com.anna.hero_squad.parameter_resolver.HeroParameterResolver;
+import com.anna.hero_squad.parameter_resolver.HeroServiceParameterResolver;
 import com.anna.hero_squad.parameter_resolver.SquadParameterResolver;
 import com.anna.hero_squad.parameter_resolver.SquadServiceParameterResolver;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SquadParameterResolver.class)
 @ExtendWith(SquadServiceParameterResolver.class)
+@ExtendWith(HeroParameterResolver.class)
+@ExtendWith(HeroServiceParameterResolver.class)
 class SquadServiceTest {
   @Test
   @DisplayName("Test to check squad is added to squads list")
@@ -62,6 +67,27 @@ class SquadServiceTest {
     squadService.add(squad, squadService.getAll());
     squadService.delete(squad.getId(), squadService.getAll());
     assertFalse(squadService.getAll().contains(squad));
+  }
+
+  @Test
+  @DisplayName("Test to check that squad heroes list contains an added hero's data")
+  public void addHeroToSquad_addsHeroToSquadHeroesList_true(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
+    heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    Squad foundSquad = squadService.get(squad.getId(), squadService.getAll());
+    assertTrue(foundSquad.getHeroes().contains(hero));
+  }
+
+  @Test
+  @DisplayName("Test to check that squad heroes list does not contain hero data when hero is removed")
+  public void deleteHeroFromSquad_deletesHeroFromSquadHeroesList_false(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
+    heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    Squad foundSquad = squadService.get(squad.getId(), squadService.getAll());
+    squadService.deleteHeroFromSquad(hero, foundSquad.getId(), squadService.getAll(), heroService.getAll());
+    assertFalse(foundSquad.getHeroes().contains(hero));
   }
 
   @Test
