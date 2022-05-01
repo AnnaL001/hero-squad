@@ -1,5 +1,6 @@
 package com.anna.hero_squad.services;
 
+import com.anna.hero_squad.models.Hero;
 import com.anna.hero_squad.models.Squad;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class SquadService implements HeroSquadService<Squad> {
   private List<Squad> squads = new ArrayList<>();
+  private final HeroService heroService = new HeroService();
   @Override
   public void add(Squad data, List<Squad> collection) {
     squads = collection;
@@ -30,6 +32,28 @@ public class SquadService implements HeroSquadService<Squad> {
     squad.setName(data.getName());
     squad.setCause(data.getCause());
     squad.setMaxSize(data.getMaxSize());
+  }
+
+  public void addHeroToSquad(Hero hero, int squadId, List<Squad> collection, List<Hero> heroes){
+    squads = collection;
+    Squad squad = get(squadId, squads);
+    // Add hero to squad heroes list
+    squad.getHeroes().add(hero);
+    // Get added hero data
+    int heroIndex = squad.getHeroes().indexOf(hero);
+    Hero foundHero = squad.getHeroes().get(heroIndex);
+    // Update hero squadId
+    foundHero.setSquadId(squadId);
+    heroService.update(foundHero, heroes);
+  }
+
+  public void deleteHeroFromSquad(Hero hero, int squadId, List<Squad> collection, List<Hero> heroes){
+    squads = collection;
+    Squad squad = get(squadId, squads);
+    squad.getHeroes().remove(hero);
+    Hero foundHero = heroService.get(hero.getId(), heroes);
+    foundHero.setSquadId(0);
+    heroService.update(foundHero, heroes);
   }
 
 
