@@ -22,7 +22,7 @@ class HeroServiceTest {
   @Test
   @DisplayName("Test to check all added heroes can be retrieved")
   public void getAll_retrievesHeroesList_true(Hero hero, HeroService heroService) {
-    Hero anotherHero = new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
+    Hero anotherHero = setUpHero();
     heroService.add(hero, heroService.getAll());
     heroService.add(anotherHero, heroService.getAll());
     assertEquals(2, heroService.getAll().size());
@@ -70,10 +70,14 @@ class HeroServiceTest {
   @Test
   @DisplayName("Test to check that all heroes can be deleted successfully")
   public void delete_deletesAllHeroes_true(Hero hero, HeroService heroService) {
-    Hero anotherHero = new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
+    Hero anotherHero = setUpHero();
     heroService.add(hero, heroService.getAll());
     heroService.add(anotherHero, heroService.getAll());
     heroService.deleteAll(heroService.getAll());
     assertEquals(0, heroService.getAll().size());
+  }
+
+  private Hero setUpHero(){
+    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
   }
 }
