@@ -26,16 +26,28 @@ public class SquadService implements HeroSquadService<Squad> {
 
   @Override
   public void update(Squad data, List<Squad> collection) {
-
+    Squad squad = get(data.getId(), collection);
+    squad.setName(data.getName());
+    squad.setCause(data.getCause());
+    squad.setMaxSize(data.getMaxSize());
   }
+
 
   @Override
   public void delete(int id, List<Squad> collection) {
+    if(!collection.isEmpty()){
+      collection.remove(id - 1);
+    }
 
+    // Retrieve updated list
+    squads = collection;
   }
 
   @Override
   public void deleteAll(List<Squad> collection) {
-
+    if(!collection.isEmpty()){
+      collection.clear();
+    }
+    squads = collection;
   }
 }
