@@ -91,6 +91,24 @@ public class App {
       response.redirect("/heroes");
       return null;
     });
+
+    // CREATE SQUAD
+
+    // READ SQUAD
+    get("/squads", (request, response) -> {
+      model.put("squads", request.session().attribute("squads"));
+      return new HandlebarsTemplateEngine().render(
+          new ModelAndView(model, "squad-list.hbs")
+      );
+    });
+
+    get("/squads/:id", (request, response) -> {
+      Squad squad = squadService.get(parseInt(request.params("id")), request.session().attribute("squads"));
+      model.put("squad", squad);
+      return new HandlebarsTemplateEngine().render(
+          new ModelAndView(model, "squad-profile.hbs")
+      );
+    });
   }
 
   public static void setupList(){
