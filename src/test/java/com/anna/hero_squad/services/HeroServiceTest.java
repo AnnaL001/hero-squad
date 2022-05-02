@@ -61,14 +61,14 @@ class HeroServiceTest {
     hero.setAge(20);
     hero.setSpecialPower("Ferromagnetism");
     hero.setWeakness("Can't use powers secretly due to dark-greenish glow on hands");
-    hero.setGender('U');
+    hero.setGender(true);
     heroService.update(hero, heroService.getAll());
     Hero foundHero = heroService.get(hero.getId(), heroService.getAll());
     assertEquals("Lorna Dane", foundHero.getName());
     assertEquals(20, foundHero.getAge());
     assertEquals("Ferromagnetism", hero.getSpecialPower());
     assertEquals("Can't use powers secretly due to dark-greenish glow on hands", hero.getWeakness());
-    assertEquals('U', hero.getGender());
+    assertTrue(hero.getGender());
   }
 
   @Test
@@ -88,6 +88,6 @@ class HeroServiceTest {
   }
 
   private Hero setUpHero(){
-    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
+    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", true);
   }
 }
