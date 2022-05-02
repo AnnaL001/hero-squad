@@ -5,13 +5,15 @@ import com.anna.hero_squad.models.Squad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 public class SquadService implements HeroSquadService<Squad, Hero> {
   private List<Squad> squads = new ArrayList<>();
   private final HeroService heroService = new HeroService();
   @Override
   public void add(Squad data, List<Squad> collection) {
-    squads = collection;
+    squads = Objects.requireNonNullElseGet(collection, (Supplier<List<Squad>>) ArrayList::new);
     data.setId(squads.size() + 1);
     squads.add(data);
   }
