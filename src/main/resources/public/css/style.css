@@ -1,0 +1,199 @@
+/*=====================================
+UTILITIES
+=======================================*/
+body {
+  font-family: 'Oswald', sans-serif;
+  background-color: #000000;
+}
+
+.bg-black{
+  background-color: #000000;
+}
+
+.text-green {
+  color: #30E157 !important;
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+}
+
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-regular {
+  font-weight: 400;
+}
+
+.fs-large {
+  font-size: 3rem;
+}
+
+.fs-normal {
+  font-size: 1.15rem;
+}
+
+.fs-medium {
+  font-size: 1.8rem;
+}
+
+.squad-badge {
+  background-color: rgba(48, 225, 87, 0.1);
+  text-align: center;
+}
+
+i {
+  font-size: 1.2rem;
+}
+
+/*=====================================
+HEADER
+=======================================*/
+nav {
+  margin: 0 3rem;
+}
+
+nav a.nav-link {
+  padding: 1.5rem 0;
+  margin: 0 1rem;
+}
+
+img.logo {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+/*=====================================
+BANNER
+=======================================*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img#banner-img {
+  padding-top: 2rem;
+}
+
+h1#banner-title {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+button.btn-outline-primary {
+  border-color: #30E157;
+  color: #30E157;
+  border-radius: 6rem;
+  padding: 0.6rem 2rem;
+}
+
+button.btn-outline-primary:hover,
+button.btn-outline-primary:active {
+  color: #ffffff;
+  background-color: rgba(48, 225, 87, 0.1);
+  border-color: rgba(48, 225, 87, 0.1);
+}
+
+div#squads {
+  border: 1px solid #30E157;
+  border-radius: 0.8rem;
+}
+
+/*=====================================
+HEROES HEADER, SQUADS HEADER
+=======================================*/
+section#heroes-header img.img-sizing,
+section#squads-header img.img-sizing {
+  max-width: 20rem;
+  max-height: 20rem;
+}
+
+/*=====================================
+HERO PROFILE
+=======================================*/
+section#hero-profile a {
+  color: #30E157;
+}
+
+section#hero-profile a:hover,
+section#hero-profile a:active {
+  color: rgba(48, 225, 87, 0.6);;
+}
+
+/*=====================================
+HEROES LIST & SQUADS LIST
+=======================================*/
+tbody, td, tfoot, th, thead, tr {
+  border-color: #30E157 !important;
+}
+
+thead {
+  color: #30E157;
+}
+
+tr {
+  padding: 1rem 0 !important;
+}
+
+/*=====================================
+FORM
+=======================================*/
+.card {
+  border-color: #30E157;
+  background-color: #000000;
+  margin: 3rem 0;
+  border-radius: 0.8rem;
+}
+
+input.form-control,
+select.form-select {
+  border-radius: 6rem;
+}
+
+/*=====================================
+MEDIA QUERIES
+=======================================*/
+@media screen and (max-width: 767px){
+  .row {
+    text-align: center;
+  }
+
+  div#squads {
+    margin-top: 2rem;
+  }
+
+  h1#banner-title {
+    margin-top: 2rem;
+  }
+
+  .profile-links {
+    justify-content: center;
+  }
+
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+  .row {
+    text-align: center;
+  }
+
+  h1#banner-title {
+    margin-top: 1rem;
+  }
+
+  div#squads {
+    margin-top: 2rem;
+  }
+
+  section#banner button {
+    display: block;
+    text-align: center;
+  }
+
+  .profile-links {
+    justify-content: center;
+  }
+}
+
