@@ -1,0 +1,52 @@
+{{#partial "title"}}
+  List of heroes
+{{/partial}}
+{{#partial "content"}}
+  <section id="heroes-header">
+    <div class="text-center">
+      <h1 class="title text-green pt-5">List of heroes</h1>
+      <img src="/images/justice-league.png" class="img-sizing" alt="An image of the justice league squad">
+    </div>
+  </section>
+  <section id="heroes-list" class="my-5">
+    <div class="container">
+      <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Squad</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#if heroes}}
+          {{#each heroes}}
+            <tr>
+              <th class="fw-light text-white" scope="row">{{id}}</th>
+              <td class="fw-light text-white">{{name}}</td>
+              <td>
+                {{#if "squadId == 0"}}
+                  <a href="#" class="fw-light text-green">
+                    Add to squad
+                  </a>
+                {{else}}
+                  <a href="#" class="squad-badge fw-light px-2 py-1 text-white text-decoration-none">
+                    Inner circle
+                  </a>
+                {{/if}}
+              </td>
+              <td>
+                <a href="#" class="fw-light text-green">
+                  View details
+                </a>
+              </td>
+            </tr>
+          {{/each}}
+        {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{{/partial}}
+{{>layout.hbs}}
