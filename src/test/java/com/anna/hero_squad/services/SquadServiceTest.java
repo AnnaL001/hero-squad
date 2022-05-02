@@ -133,7 +133,4 @@ class SquadServiceTest {
     return new Squad(5, "Inner circle", "Fight for mutants' rights");
   }
 
-  private Hero setUpHero(){
-    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", 'M');
-  }
 }
