@@ -93,6 +93,23 @@ public class App {
     });
 
     // CREATE SQUAD
+    get("/squads/new", (request, response) -> {
+      model.put("edit", false);
+      return new HandlebarsTemplateEngine().render(
+          new ModelAndView(model, "squad-form.hbs")
+      );
+    });
+
+    post("/squads", (request, response) -> {
+      Squad squad = new Squad(
+          parseInt(request.queryParams("squad-max-size")),
+          request.queryParams("squad-name"),
+          request.queryParams("squad-cause")
+      );
+      squadService.add(squad, request.session().attribute("squads"));
+      response.redirect("/squads");
+      return null;
+    });
 
     // READ SQUAD
     get("/squads", (request, response) -> {
@@ -108,6 +125,28 @@ public class App {
       return new HandlebarsTemplateEngine().render(
           new ModelAndView(model, "squad-profile.hbs")
       );
+    });
+
+    // UPDATE SQUAD
+    get("/squads/:id/update", (request, response) -> {
+      Squad squad = squadService.get(parseInt(request.params("id")), request.session().attribute("squads"));
+      model.put("squad", squad);
+      model.put("edit", true);
+      return new HandlebarsTemplateEngine().render(
+          new ModelAndView(model, "squad-form.hbs")
+      );
+    });
+
+    post("/squads/:id/update", (request, response) -> {
+      Squad squad = new Squad(
+          parseInt(request.queryParams("squad-max-size")),
+          request.queryParams("squad-name"),
+          request.queryParams("squad-cause")
+      );
+      squad.setId(parseInt(request.params("id")));
+      squadService.update(squad, request.session().attribute("squads"));
+      response.redirect("/squads");
+      return null;
     });
   }
 
