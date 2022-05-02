@@ -48,7 +48,7 @@ class HeroTest {
   @Test
   @DisplayName("Test that a hero instance instantiates with the gender property's value")
   public void newHero_instantiatesWithGender_true(Hero hero) {
-    assertEquals('F', hero.getGender());
+    assertFalse(hero.getGender());
   }
 
   @Test
@@ -88,8 +88,8 @@ class HeroTest {
   @Test
   @DisplayName("Test that a hero instance's gender is updated as specified")
   public void setGender_updatesGenderCorrectly_true(Hero hero) {
-    hero.setGender('U');
-    assertEquals('U', hero.getGender());
+    hero.setGender(true);
+    assertTrue(hero.getGender());
   }
 
   @Test
