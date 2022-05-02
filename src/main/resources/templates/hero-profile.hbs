@@ -1,0 +1,74 @@
+{{#partial "content"}}
+  <section id="hero-profile">
+    <div class="text-center">
+      <h1 class="title text-green py-4">Hero profile</h1>
+    </div>
+    <div class="container">
+      {{#if hero}}
+        <div class="row gx-5">
+          <div class="col-12 col-lg-5">
+            {{#if hero.gender}}
+              <img src="/images/hero.png" class="rounded img-thumbnail mt-4" alt="An image of a male hero">
+            {{else}}
+              <img src="/images/heroine.png" class="rounded img-thumbnail mt-4" alt="An image of a female hero">
+            {{/if}}
+            <div class="d-flex profile-links">
+              <a href="/heroes/{{hero.id}}/update" class="fw-light py-3">
+                <i class="fa-solid fa-pen-to-square text-green px-2"></i>
+                Update
+              </a>
+              <a href="#" class="fw-light px-4 py-3">
+                <i class="fa-solid fa-trash-can text-green px-2"></i>
+                Delete
+              </a>
+            </div>
+          </div>
+          <div class="col-12 col-lg-7">
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Name:</span>
+              {{hero.name}}
+            </p>
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Age:</span>
+              {{hero.age}}
+            </p>
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Special power:</span>
+              {{hero.specialPower}}
+            </p>
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Weakness:</span>
+              {{hero.weakness}}
+            </p>
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Gender:</span>
+              {{#if hero.gender}}
+                Male
+              {{else}}
+                Female
+              {{/if}}
+            </p>
+            <p class="mt-4 text-white fw-light">
+              <span class="text-green fw-regular">Squad:</span>
+              {{#if hero.isInSquad}}
+                <a href="#" class="squad-badge px-2 py-1 text-white text-decoration-none">
+                  {{squad.name}}
+                </a>
+              {{else}}
+                <a href="#" class="fw-light text-green">
+                  Add to squad
+                </a>
+              {{/if}}
+            </p>
+          </div>
+        </div>
+      {{else}}
+        <div class="alert alert-theme col-12 col-md-6 col-lg-4 mx-auto" role="alert">
+          <i class="fa-solid fa-circle-info"></i>
+          <span class="text-white px-2">Hero not found</span>
+        </div>
+      {{/if}}
+    </div>
+  </section>
+{{/partial}}
+{{>layout.hbs}}
