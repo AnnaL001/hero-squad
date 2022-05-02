@@ -53,6 +53,7 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
     Hero foundHero = squad.getHeroes().get(heroIndex);
     // Update hero squadId
     foundHero.setSquadId(squadId);
+    foundHero.setIsInSquad(true);
     heroService.update(foundHero, heroes);
   }
 
@@ -62,6 +63,7 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
     squad.getHeroes().remove(hero);
     Hero foundHero = heroService.get(hero.getId(), heroes);
     foundHero.setSquadId(0);
+    foundHero.setIsInSquad(false);
     heroService.update(foundHero, heroes);
   }
 
@@ -72,6 +74,7 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
     // Set squadId of heroes in squad heroes list to 0
     for(Hero hero: heroList){
       hero.setSquadId(0);
+      hero.setIsInSquad(false);
       heroService.update(hero, heroes);
     }
 
@@ -82,4 +85,5 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
     // Retrieve updated list
     squads = collection;
   }
+
 }
