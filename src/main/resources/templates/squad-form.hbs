@@ -1,0 +1,67 @@
+{{#partial "title"}}
+  Add a Squad
+{{/partial}}
+{{#partial "content"}}
+  <section id="heroes-header">
+    <div class="text-center">
+      <h1 class="title text-green pt-5">Begin your journey ...</h1>
+      <img src="/images/justice-league.png" class="img-sizing" alt="An image of the justice league squad">
+    </div>
+  </section>
+  <section id="form">
+    <div class="container">
+      <div class="col-12 col-md-8 col-lg-6 mx-auto">
+        {{#if edit}}
+          <div class="card">
+            <div class="card-body">
+              <h2 class="text-center text-white">Edit squad data</h2>
+              <hr class="text-white">
+              <form action="/squads/{{squad.id}}/update" class="my-4" method="post">
+                <div class="form-floating my-4">
+                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" placeholder="Maximum size" value="{{squad.maxSize}}">
+                  <label for="squad-max-size">Maximum size</label>
+                </div>
+                <div class="form-floating my-4">
+                  <input type="text" class="form-control" id="squad-name" name="squad-name" placeholder="Name" value="{{squad.name}}">
+                  <label for="squad-name">Name</label>
+                </div>
+                <div class="form-floating my-4">
+                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause" value="{{squad.cause}}">
+                  <label for="squad-cause">Cause</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-outline-primary">Edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        {{else}}
+          <div class="card">
+            <div class="card-body">
+              <h2 class="text-center text-white">Add a squad</h2>
+              <hr class="text-white">
+              <form action="/squads" class="my-4" method="post">
+                <div class="form-floating my-4">
+                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" placeholder="Maximum size">
+                  <label for="squad-max-size">Maximum size</label>
+                </div>
+                <div class="form-floating my-4">
+                  <input type="text" class="form-control" id="squad-name" name="squad-name" placeholder="Name">
+                  <label for="squad-name">Name</label>
+                </div>
+                <div class="form-floating my-4">
+                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause">
+                  <label for="squad-cause">Cause</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-outline-primary">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+{{/partial}}
+{{>layout.hbs}}
