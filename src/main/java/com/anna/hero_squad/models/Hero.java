@@ -7,10 +7,12 @@ public class Hero {
   private String specialPower;
   private String weakness;
 
-  private char gender;
+  private boolean gender;
   private int squadId;
 
-  public Hero(String name, int age, String specialPower, String weakness, char gender) {
+  private boolean isInSquad;
+
+  public Hero(String name, int age, String specialPower, String weakness, boolean gender) {
     this.id = 0;
     this.name = name;
     this.age = age;
@@ -18,6 +20,7 @@ public class Hero {
     this.weakness = weakness;
     this.gender = gender;
     this.squadId = 0;
+    this.isInSquad = false;
   }
 
   public int getId() {
@@ -38,9 +41,21 @@ public class Hero {
 
   public void setWeakness(String weakness) { this.weakness = weakness; }
 
-  public char getGender() { return gender; }
+  public boolean getGender() {
+    return gender;
+  }
 
-  public void setGender(char gender) { this.gender = gender; }
+  public void setGender(boolean gender) {
+    this.gender = gender;
+  }
 
   public void setSquadId(int squadId) { this.squadId = squadId; }
+
+  public boolean getIsInSquad() {
+    return isInSquad;
+  }
+
+  public void setIsInSquad(boolean isInSquad) {
+    this.isInSquad = isInSquad;
+  }
 }
