@@ -14,6 +14,6 @@ public class HeroParameterResolver implements ParameterResolver {
 
   @Override
   public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-    return new Hero("Polaris", 18 , "Magnetokinesis", "Can't use powers without metal in close range", 'F');
+    return new Hero("Polaris", 18 , "Magnetokinesis", "Can't use powers without metal in close range", false);
   }
 }
