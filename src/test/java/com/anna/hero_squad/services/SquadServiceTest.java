@@ -108,6 +108,19 @@ class SquadServiceTest {
   }
 
   @Test
+  @DisplayName("Test that a hero is added to a squad only if the squad is not full")
+  public void addHeroToSquad_addsHeroOnlyIfSquadIsNotFull_false(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
+    Hero anotherHero = setUpHero();
+    squad.setMaxSize(1);
+    heroService.add(anotherHero, heroService.getAll());
+    heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
+    squadService.addHeroToSquad(anotherHero, squad.getId(), squadService.getAll(), heroService.getAll());
+    assertFalse(squad.getHeroes().contains(anotherHero));
+  }
+
+  @Test
   @DisplayName("Test to check that squad heroes list does not contain hero data when hero is removed")
   public void deleteHeroFromSquad_deletesHeroFromSquadHeroesList_false(Hero hero, Squad squad, SquadService squadService, HeroService heroService){
     heroService.add(hero, heroService.getAll());
@@ -132,5 +145,7 @@ class SquadServiceTest {
   private Squad setUpASquad(){
     return new Squad(5, "Inner circle", "Fight for mutants' rights");
   }
-
+  private Hero setUpHero(){
+    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", true);
+  }
 }
