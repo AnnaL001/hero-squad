@@ -35,8 +35,13 @@
               </div>
               <div class="form-floating my-4">
                 <select class="form-select" id="hero-gender" name="hero-gender" aria-label="Select gender" required>
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
+                  {{#if hero.gender}}
+                    <option value="true" selected>Male</option>
+                    <option value="false">Female</option>
+                  {{else}}
+                    <option value="true">Male</option>
+                    <option value="false" selected>Female</option>
+                  {{/if}}
                 </select>
                 <label for="hero-gender">Select gender</label>
               </div>
