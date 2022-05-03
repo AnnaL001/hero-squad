@@ -48,12 +48,12 @@ public class HeroService implements HeroSquadService<Hero, Squad>{
   @Override
   public void delete(int id, List<Hero> collection, List<Squad> squads) {
     SquadService squadService = new SquadService();
-    if(!collection.isEmpty()){
-      Hero hero = get(id, collection);
+    Hero hero = get(id, collection);
+    if(hero.getSquadId() != 0){
       Squad heroSquad = squadService.get(hero.getSquadId(), squads);
       heroSquad.getHeroes().remove(hero);
-      collection.remove(id - 1);
     }
+    collection.remove(id - 1);
     heroes = collection;
   }
 }
