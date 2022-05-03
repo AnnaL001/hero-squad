@@ -40,8 +40,11 @@
                 </select>
                 <label for="hero-gender">Select gender</label>
               </div>
-              <div class="text-center">
+              <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-outline-primary">Edit</button>
+                <a href="/heroes/{{hero.id}}" class="px-4">
+                  <button type="button" class="btn btn-outline-primary">Back</button>
+                </a>
               </div>
             </form>
           </div>
@@ -75,8 +78,11 @@
                 </select>
                 <label for="hero-gender">Select gender</label>
               </div>
-              <div class="text-center">
+              <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-outline-primary">Add</button>
+                <a href="/heroes" class="px-4">
+                  <button type="button" class="btn btn-outline-primary">Back</button>
+                </a>
               </div>
             </form>
           </div>
