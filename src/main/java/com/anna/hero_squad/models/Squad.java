@@ -10,12 +10,16 @@ public class Squad {
   private String cause;
   private List<Hero> heroes;
 
+  private boolean isFull;
+
   public Squad(int maxSize, String name, String cause) {
     this.id = 0;
     this.maxSize = maxSize;
     this.name = name;
     this.cause = cause;
     this.heroes = new ArrayList<>();
+    setIsFull();
+    this.isFull = getIsFull();
   }
 
   public int getId() {
@@ -56,5 +60,13 @@ public class Squad {
 
   public void setHeroes(List<Hero> heroes) {
     this.heroes = heroes;
+  }
+
+  public boolean getIsFull() {
+    return isFull;
+  }
+
+  public void setIsFull() {
+    isFull = heroes.size() >= maxSize;
   }
 }
