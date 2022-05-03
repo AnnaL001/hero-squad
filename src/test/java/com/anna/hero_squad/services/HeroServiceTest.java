@@ -1,6 +1,7 @@
 package com.anna.hero_squad.services;
 
 import com.anna.hero_squad.models.Hero;
+import com.anna.hero_squad.models.Squad;
 import com.anna.hero_squad.parameter_resolver.HeroParameterResolver;
 import com.anna.hero_squad.parameter_resolver.HeroServiceParameterResolver;
 import com.anna.hero_squad.parameter_resolver.SquadParameterResolver;
@@ -72,7 +73,7 @@ class HeroServiceTest {
   }
 
   @Test
-  @DisplayName("Test to check that hero data can be deleted successfully")
+  @DisplayName("Test to check that hero not in a squad can be deleted successfully")
   public void delete_deletesAHeroNotInSquad_false(Hero hero, HeroService heroService, SquadService squadService) {
     heroService.add(hero, heroService.getAll());
     heroService.delete(hero.getId(), heroService.getAll(), squadService.getAll());
@@ -81,10 +82,12 @@ class HeroServiceTest {
 
   @Test
   @DisplayName("Test to check that hero data can be deleted successfully")
-  public void delete_updatesSquadHeroesList_false(Hero hero, HeroService heroService, SquadService squadService) {
+  public void delete_updatesSquadHeroesList_false(Hero hero, Squad squad, HeroService heroService, SquadService squadService) {
     heroService.add(hero, heroService.getAll());
+    squadService.add(squad, squadService.getAll());
+    squadService.addHeroToSquad(hero, squad.getId(), squadService.getAll(), heroService.getAll());
     heroService.delete(hero.getId(), heroService.getAll(), squadService.getAll());
-    assertFalse(heroService.getAll().contains(hero));
+    assertFalse(squad.getHeroes().contains(hero));
   }
 
   private Hero setUpHero(){
