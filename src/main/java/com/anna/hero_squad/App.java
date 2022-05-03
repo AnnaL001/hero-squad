@@ -148,6 +148,32 @@ public class App {
       response.redirect("/squads");
       return null;
     });
+
+    // ADD HERO TO SQUAD
+    get("/squads/:id/heroes/new", (request, response) -> {
+      Squad squad = squadService.get(parseInt(request.params("id")), request.session().attribute("squads"));
+      model.put("heroes", request.session().attribute("heroes"));
+      model.put("squad", squad);
+      return new HandlebarsTemplateEngine().render(
+          new ModelAndView(model, "hero-members-form.hbs")
+      );
+    });
+
+    post("/squads/:id/heroes", (request, response) -> {
+      Hero hero = heroService.get(parseInt(request.queryParams("hero-member")), request.session().attribute("heroes"));
+      squadService.addHeroToSquad(hero, parseInt(request.params("id")), request.session().attribute("squads"), request.session().attribute("heroes"));
+      response.redirect("/squads/" + request.params("id"));
+      return null;
+    });
+
+    // DELETE HERO FROM SQUAD
+    get("/squads/:squad_id/heroes/:hero_id/delete", (request, response) -> {
+      Hero hero = heroService.get(parseInt(request.params("hero_id")), request.session().attribute("heroes"));
+      squadService.deleteHeroFromSquad(hero, parseInt(request.params("squad_id")), request.session().attribute("squads"), request.session().attribute("heroes"));
+      response.redirect("/squads/" + request.params("squad_id"));
+      return null;
+    });
+
   }
 
   public static void setupList(){
