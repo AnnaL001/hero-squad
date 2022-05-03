@@ -16,7 +16,21 @@ The Java application allows users to create heroes with various special powers a
 - In the case of IntelliJ, to navigate you can reference their documentation https://www.jetbrains.com/help/idea/getting-started.html
 - Otherwise to view the web application navigate to the link below <br>
 ## Behavior Driven Development(BDD)
-
+| **Behavior**                              | **Input Example**                           | **Output**                                                         |
+|-------------------------------------------|:--------------------------------------------|:-------------------------------------------------------------------|
+| Add a hero     | name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false |  Hero is added and user redirected to hero list page    |
+| Add a squad    | maxSize=5, name=The Avengers, cause = Stop Thanos | Squad is added and user redirected to squad list page |
+| Read a hero's data  | id=1   | User redirected to hero's profile page   |
+| Read a squad's data | id=1   | User redirected to squad's profile page |
+| Update a hero's data | name=Polaris, age=20, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false  | Hero data is updated and user redirected to hero profile |   
+| Update a squad's data | maxSize=10, name=The Avengers, cause = Stop Thanos | Squad data is updated and user redirected to squad profile | 
+| Delete a hero not in squad | id=1, list of heroes | Hero's data is deleted and user redirected to hero list page |
+| Delete a hero in squad | id=1, list of heroes | Hero's data in hero list and in squad is deleted and user redirected to hero list page |
+| Delete a squad | id=1, list of squads |  Squad's data is deleted and user redirected to squad list page |
+| Delete a squad with heroes | id=1, list of squads |  Squad's data is deleted, heroes' squadId is updated to 0(NOT SET) and user redirected to squad list page |
+| Add hero to squad when squad is not full | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero is added to squad and user redirected to squad profile
+| Add hero to squad when squad is full | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero is not added and user receives feedback the squad is full
+| Delete hero from squad | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero deleted from squad and their squadId set to 0(NOT SET)
 
 ## Dependencies
 
