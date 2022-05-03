@@ -149,6 +149,13 @@ public class App {
       return null;
     });
 
+    // DELETE SQUAD
+    get("/squads/:id/delete", (request, response) -> {
+      squadService.delete(parseInt(request.params("id")), request.session().attribute("squads"), request.session().attribute("heroes"));
+      response.redirect("/squads");
+      return null;
+    });
+
     // ADD HERO TO SQUAD
     get("/squads/:id/heroes/new", (request, response) -> {
       Squad squad = squadService.get(parseInt(request.params("id")), request.session().attribute("squads"));
