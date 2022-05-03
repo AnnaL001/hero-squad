@@ -38,8 +38,11 @@
                   </select>
                   <label for="hero-member">Select hero member</label>
                 </div>
-                <div class="text-center">
+                <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-outline-primary">Add member</button>
+                  <a href="/squads/{{squad.id}}" class="px-4">
+                    <button type="button" class="btn btn-outline-primary">Back</button>
+                  </a>
                 </div>
               </form>
             {{/if}}
