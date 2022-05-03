@@ -18,7 +18,11 @@ public class HeroService implements HeroSquadService<Hero, Squad>{
    */
   @Override
   public void add(Hero data, List<Hero> collection) {
-    heroes = Objects.requireNonNullElseGet(collection, ArrayList::new);
+    if(collection != null){
+      heroes = collection;
+    } else {
+      heroes = new ArrayList<>();
+    }
     data.setId(heroes.size() + 1);
     heroes.add(data);
   }
