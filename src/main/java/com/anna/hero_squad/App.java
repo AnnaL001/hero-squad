@@ -79,6 +79,13 @@ public class App {
       );
     });
 
+    // DELETE HERO
+    get("/heroes/:id/delete", (request, response) -> {
+      heroService.delete(parseInt(request.params("id")), request.session().attribute("heroes"), request.session().attribute("squads"));
+     response.redirect("/heroes");
+     return null;
+    });
+
     post("/heroes/:id/update", (request, response) -> {
       Hero hero = new Hero(
           request.queryParams("hero-name"),
