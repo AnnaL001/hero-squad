@@ -29,8 +29,11 @@
                   <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause" minlength="4" value="{{squad.cause}}" required>
                   <label for="squad-cause">Cause</label>
                 </div>
-                <div class="text-center">
+                <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-outline-primary">Edit</button>
+                  <a href="/squads/{{squad.id}}" class="px-4">
+                    <button type="button" class="btn btn-outline-primary">Back</button>
+                  </a>
                 </div>
               </form>
             </div>
@@ -53,8 +56,11 @@
                   <input type="text" class="form-control" id="squad-cause" name="squad-cause" minlength="4" placeholder="Cause" required>
                   <label for="squad-cause">Cause</label>
                 </div>
-                <div class="text-center">
+                <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-outline-primary">Add</button>
+                  <a href="/squads" class="px-4">
+                    <button type="button" class="btn btn-outline-primary">Back</button>
+                  </a>
                 </div>
               </form>
             </div>
