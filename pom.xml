@@ -69,7 +69,7 @@
                     <archive>
                         <!-- Change this to YOUR main class name if different. Usually, it will be App. -->
                         <manifest>
-                            <mainClass>App</mainClass>
+                            <mainClass>com.anna.hero_squad.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
