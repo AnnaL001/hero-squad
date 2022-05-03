@@ -18,15 +18,15 @@
               <hr class="text-white">
               <form action="/squads/{{squad.id}}/update" class="my-4" method="post">
                 <div class="form-floating my-4">
-                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" placeholder="Maximum size" value="{{squad.maxSize}}">
+                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" placeholder="Maximum size" min="1" value="{{squad.maxSize}}" required>
                   <label for="squad-max-size">Maximum size</label>
                 </div>
                 <div class="form-floating my-4">
-                  <input type="text" class="form-control" id="squad-name" name="squad-name" placeholder="Name" value="{{squad.name}}">
+                  <input type="text" class="form-control" id="squad-name" name="squad-name" placeholder="Name" minlength="4" value="{{squad.name}}" required>
                   <label for="squad-name">Name</label>
                 </div>
                 <div class="form-floating my-4">
-                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause" value="{{squad.cause}}">
+                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause" minlength="4" value="{{squad.cause}}" required>
                   <label for="squad-cause">Cause</label>
                 </div>
                 <div class="text-center">
@@ -42,15 +42,15 @@
               <hr class="text-white">
               <form action="/squads" class="my-4" method="post">
                 <div class="form-floating my-4">
-                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" placeholder="Maximum size">
+                  <input type="number" class="form-control" id="squad-max-size" name="squad-max-size" min="1" placeholder="Maximum size" required>
                   <label for="squad-max-size">Maximum size</label>
                 </div>
                 <div class="form-floating my-4">
-                  <input type="text" class="form-control" id="squad-name" name="squad-name" placeholder="Name">
+                  <input type="text" class="form-control" id="squad-name" name="squad-name" minlength="4" placeholder="Name" required>
                   <label for="squad-name">Name</label>
                 </div>
                 <div class="form-floating my-4">
-                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" placeholder="Cause">
+                  <input type="text" class="form-control" id="squad-cause" name="squad-cause" minlength="4" placeholder="Cause" required>
                   <label for="squad-cause">Cause</label>
                 </div>
                 <div class="text-center">
