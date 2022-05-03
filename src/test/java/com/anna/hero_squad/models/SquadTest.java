@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SquadParameterResolver.class)
 @ExtendWith(HeroParameterResolver.class)
@@ -49,6 +49,12 @@ class SquadTest {
   @DisplayName("Test that a squad instance instantiates with an empty list of heroes")
   public void newSquad_instantiatesWithEmptyHeroesList_true(Squad squad) {
     assertEquals(new ArrayList<>(), squad.getHeroes());
+  }
+
+  @Test
+  @DisplayName("Test that a squad instance instantiates with a false isFull property value")
+  public void newSquad_instantiatesWithFalseIsFull_false(Squad squad) {
+    assertFalse(squad.getIsFull());
   }
 
   @Test
@@ -92,5 +98,19 @@ class SquadTest {
     List<Hero> heroes = new ArrayList<>(List.of(hero));
     squad.setHeroes(heroes);
     assertEquals(heroes, squad.getHeroes());
+  }
+
+  @Test
+  @DisplayName("Test that squad isFull property is set correctly")
+  public void setIsFull_updatesCorrectlyWhetherSquadIsFull_true(Squad squad, Hero hero){
+    squad.setMaxSize(1);
+    List<Hero> heroes = new ArrayList<>(Arrays.asList(hero, setUpHero()));
+    squad.setHeroes(heroes);
+    squad.setIsFull();
+    assertTrue(squad.getIsFull());
+  }
+
+  private Hero setUpHero(){
+    return new Hero("Captain America", 93, "Enhanced strength, reflexes and speed", "Can get mortally wounded", true);
   }
 }
