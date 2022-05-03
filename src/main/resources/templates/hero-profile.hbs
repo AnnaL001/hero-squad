@@ -54,13 +54,13 @@
             <p class="mt-4 text-white fw-light">
               <span class="text-green fw-regular">Squad:</span>
               {{#if hero.isInSquad}}
-                <a href="#" class="squad-badge px-2 py-1 text-white text-decoration-none">
+                <a href="/squads/{{hero.squadId}}" class="squad-badge px-2 py-1 text-white text-decoration-none">
                   {{squad.name}}
                 </a>
               {{else}}
-                <a href="#" class="fw-light text-green">
-                  Add to squad
-                </a>
+                <span class="squad-badge px-2 py-1 text-white text-decoration-none">
+                  Not in any squad
+                </span>
               {{/if}}
             </p>
           </div>
