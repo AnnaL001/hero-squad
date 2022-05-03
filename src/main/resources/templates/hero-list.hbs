@@ -8,13 +8,22 @@
       <img src="/images/justice-league.png" class="img-sizing" alt="An image of the justice league squad">
     </div>
   </section>
+  <section id="hero-action">
+    <div class="text-center">
+      <a href="/heroes/new">
+        <button class="btn btn-outline-primary mt-3 mx-auto">
+          Add Hero
+        </button>
+      </a>
+    </div>
+  </section>
   <section id="heroes-list" class="my-5">
     <div class="container">
         {{#if heroes}}
           <table class="table table-striped table-responsive">
             <thead>
             <tr>
-              <th scope="col">No</th>
+              <th scope="col">ID</th>
               <th scope="col">Name</th>
               <th scope="col">Special power</th>
               <th scope="col">Action</th>
@@ -38,10 +47,10 @@
             </tbody>
           </table>
         {{else}}
-          <div class="alert alert-theme col-12 col-md-6 col-lg-4 mx-auto" role="alert">
-            <i class="fa-solid fa-circle-info"></i>
-            <span class="text-white px-2">No heroes found</span>
-          </div>
+          {{#partial "alert"}}
+            No heroes found
+          {{/partial}}
+          {{>alert.hbs}}
         {{/if}}
     </div>
   </section>
