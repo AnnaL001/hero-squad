@@ -15,6 +15,7 @@ The Java application allows users to create heroes with various special powers a
 - Once locally, you can view/run the Java application's code via a text editor(VS Code or Sublime Text) or an IDE(IntelliJ).
 - In the case of IntelliJ, to navigate you can reference their documentation https://www.jetbrains.com/help/idea/getting-started.html
 - Otherwise to view the web application navigate to the link below <br>
+  [Live Site](https://hero-squad01.herokuapp.com/)
 ## Behavior Driven Development(BDD)
 | **Behavior**                              | **Input Example**                           | **Output**                                                         |
 |-------------------------------------------|:--------------------------------------------|:-------------------------------------------------------------------|
