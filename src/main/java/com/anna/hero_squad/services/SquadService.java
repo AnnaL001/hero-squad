@@ -47,6 +47,7 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
   public void addHeroToSquad(Hero hero, int squadId, List<Squad> collection, List<Hero> heroes){
     squads = collection;
     Squad squad = get(squadId, squads);
+    squad.setIsFull();
     if(!squad.getIsFull()){
       // Add hero to squad heroes list
       squad.getHeroes().add(hero);
