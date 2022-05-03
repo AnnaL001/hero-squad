@@ -1,0 +1,52 @@
+{{#partial "title"}}
+  Add a member to squad
+{{/partial}}
+{{#partial "content"}}
+  <section id="heroes-header">
+    <div class="text-center">
+      <h1 class="title text-green pt-5">Begin your journey ...</h1>
+      <img src="/images/justice-league.png" class="img-sizing" alt="An image of the justice league squad">
+    </div>
+  </section>
+  <section id="form">
+    <div class="container">
+      <div class="col-12 col-md-8 col-lg-6 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center text-white">Add hero to {{squad.name}} squad</h2>
+            <hr class="text-white">
+            {{#if squad.isFull}}
+              {{#partial "icon"}}
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              {{/partial}}
+              {{#partial "alert"}}
+                Oops!, squad is full
+              {{/partial}}
+              {{>alert.hbs}}
+            {{else}}
+              <form action="/squads/{{squad.id}}/heroes" class="my-4" method="post">
+                <small class="fw-light text-green">The list of heroes below only contains heroes not in a squad thus if empty add a new hero before proceeding</small>
+                <div class="form-floating my-4">
+                  <select class="form-select" id="hero-member" name="hero-member" aria-label="Select hero member" required>
+                    <option value="" selected disabled>List of heroes </option>
+                    {{#each heroes}}
+                      {{#if isInSquad}}
+                      {{else}}
+                        <option value="{{id}}">{{name}}</option>
+                      {{/if}}
+                    {{/each}}
+                  </select>
+                  <label for="hero-member">Select hero member</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-outline-primary">Add member</button>
+                </div>
+              </form>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{/partial}}
+{{>layout.hbs}}
