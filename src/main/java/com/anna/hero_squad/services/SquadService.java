@@ -41,26 +41,33 @@ public class SquadService implements HeroSquadService<Squad, Hero> {
     squad.setName(data.getName());
     squad.setCause(data.getCause());
     squad.setMaxSize(data.getMaxSize());
+    squad.setIsFull();
   }
 
   public void addHeroToSquad(Hero hero, int squadId, List<Squad> collection, List<Hero> heroes){
     squads = collection;
     Squad squad = get(squadId, squads);
-    // Add hero to squad heroes list
-    squad.getHeroes().add(hero);
-    // Get added hero data
-    int heroIndex = squad.getHeroes().indexOf(hero);
-    Hero foundHero = squad.getHeroes().get(heroIndex);
-    // Update hero squadId
-    foundHero.setSquadId(squadId);
-    foundHero.setIsInSquad(true);
-    heroService.update(foundHero, heroes);
+    if(!squad.getIsFull()){
+      // Add hero to squad heroes list
+      squad.getHeroes().add(hero);
+      // Get added hero data
+      int heroIndex = squad.getHeroes().indexOf(hero);
+      Hero foundHero = squad.getHeroes().get(heroIndex);
+      // Update hero squadId
+      foundHero.setSquadId(squadId);
+      foundHero.setIsInSquad(true);
+      heroService.update(foundHero, heroes);
+      squad.setIsFull();
+    } else {
+      System.out.println("Squad is full");
+    }
   }
 
   public void deleteHeroFromSquad(Hero hero, int squadId, List<Squad> collection, List<Hero> heroes){
     squads = collection;
     Squad squad = get(squadId, squads);
     squad.getHeroes().remove(hero);
+    squad.setIsFull();
     Hero foundHero = heroService.get(hero.getId(), heroes);
     foundHero.setSquadId(0);
     foundHero.setIsInSquad(false);
