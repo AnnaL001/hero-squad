@@ -3,7 +3,7 @@
 
 ## Description
 
-The Java application allows users to create heroes with various special powers and weakness and add them to a squad where they can fight for a cause. In addition to this, the user can specify a limit of how many heroes can be added to a squad. The user can also update the data of heroes and squads, delete them, add and delete heroes from their squads. Other features included are HTML5 form validation and sessions for data storage. The application also contains JUnit tests that check that the backend logic is working as expected in various scenarios as listed in the Behavior Driven Development section below. That is, in the development of the application TDD(Test Driven Development) has been used alongside BDD(Behavior Driven Development). 
+The Java application allows users to create heroes with various special powers and weakness and add them to a squad where they can fight for a cause. In addition to this, the user can specify a limit of how many heroes can be added to a squad. The user can also update the data of heroes and squads, delete them, add and delete heroes from their squads. For now, the profile pictures for heroes and squads are set by default depending on the gender.Other features included are HTML5 form validation and sessions for data storage. The application also contains JUnit tests that check that the backend logic is working as expected in various scenarios as listed in the Behavior Driven Development section below. That is, in the development of the application TDD(Test Driven Development) has been used alongside BDD(Behavior Driven Development). 
 
 #### By **[Lynn Nyangon](https://github.com/AnnaL001)**
 
