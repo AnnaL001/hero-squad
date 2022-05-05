@@ -17,6 +17,9 @@ The Java application allows users to create heroes with various special powers a
 - Otherwise to view the web application navigate to the link below <br>
   [Live Site](https://hero-squad01.herokuapp.com/)
 ## Behavior Driven Development(BDD)
+gender=true represents male gender <br>
+gender=false represents female gender
+
 | **Behavior**                              | **Input Example**                           | **Output**                                                         |
 |-------------------------------------------|:--------------------------------------------|:-------------------------------------------------------------------|
 | Add a hero     | name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false |  Hero is added and user redirected to hero list page    |
@@ -32,9 +35,6 @@ The Java application allows users to create heroes with various special powers a
 | Add hero to squad when squad is not full | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero is added to squad and user redirected to squad profile
 | Add hero to squad when squad is full | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero is not added and user receives feedback the squad is full
 | Delete hero from squad | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero deleted from squad and their squadId set to 0(NOT SET)
-
-gender=true represents male gender <br>
-gender=false represents female gender
 
 ## Dependencies
 
