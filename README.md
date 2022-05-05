@@ -33,6 +33,9 @@ The Java application allows users to create heroes with various special powers a
 | Add hero to squad when squad is full | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero is not added and user receives feedback the squad is full
 | Delete hero from squad | hero=Hero(name=Polaris, age=18, specialPower=Magnetokinesis, weakness=Can't use powers without metal around, gender=false), squadId=1, list of heroes, list of squads | Hero deleted from squad and their squadId set to 0(NOT SET)
 
+gender=true represents male gender
+gender=false represents female gender
+
 ## Dependencies
 
 - JUnit 5 
