@@ -7,6 +7,16 @@ The Java application allows users to create heroes with various special powers a
 
 #### By **[Lynn Nyangon](https://github.com/AnnaL001)**
 
+## Screenshots
+Images downloaded from the internet<br><br>
+![Homepage](https://github.com/AnnaL001/hero-squad/assets/43697008/401a47bc-20f4-4183-a44e-91057de770b5)
+![Hero list page](https://github.com/AnnaL001/hero-squad/assets/43697008/f02de758-a3bf-44f5-9d0f-a8155f6053e3)
+![Hero profile page](https://github.com/AnnaL001/hero-squad/assets/43697008/7159f380-ee5c-4ae1-a4a5-915605ba2e5b)
+![Squad list page](https://github.com/AnnaL001/hero-squad/assets/43697008/0952b249-d66f-44f7-b69d-a970492f4282)
+![Squad profile page](https://github.com/AnnaL001/hero-squad/assets/43697008/76f4e199-f41e-4d58-aeac-d71c4828337b)
+
+
+
 ## Setup/Installation Requirements
 
 - Using a mobile device/laptop ensure you have access to stable internet connection
